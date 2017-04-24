@@ -14,12 +14,12 @@
 		643BD5BE1EA4008E00C64F1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 643BD5BC1EA4008E00C64F1A /* Main.storyboard */; };
 		643BD5C01EA4008E00C64F1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 643BD5BF1EA4008E00C64F1A /* Assets.xcassets */; };
 		643BD5C31EA4008E00C64F1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 643BD5C11EA4008E00C64F1A /* LaunchScreen.storyboard */; };
+		64B654471EADA18800CADE5C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 64B654461EADA18800CADE5C /* tessdata */; };
 		64CC10AF1EAB05F9003A6698 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CC10AB1EAB05F9003A6698 /* Accelerate.framework */; };
 		64CC10B01EAB05F9003A6698 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CC10AC1EAB05F9003A6698 /* AssetsLibrary.framework */; };
 		64CC10B11EAB05F9003A6698 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CC10AD1EAB05F9003A6698 /* AVFoundation.framework */; };
 		64CC10B21EAB05F9003A6698 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CC10AE1EAB05F9003A6698 /* CoreMedia.framework */; };
 		64DABF7A1EABF0E9006C79FC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 64DABF791EABF0E9006C79FC /* libz.tbd */; };
-		64DABF7C1EABF1A7006C79FC /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 64DABF7B1EABF1A7006C79FC /* tessdata */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,12 +33,12 @@
 		643BD5BF1EA4008E00C64F1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		643BD5C21EA4008E00C64F1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		643BD5C41EA4008E00C64F1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64B654461EADA18800CADE5C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = SOURCE_ROOT; };
 		64CC10AB1EAB05F9003A6698 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		64CC10AC1EAB05F9003A6698 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		64CC10AD1EAB05F9003A6698 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		64CC10AE1EAB05F9003A6698 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		64DABF791EABF0E9006C79FC /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		64DABF7B1EABF1A7006C79FC /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tessdata; path = ../../../../Downloads/tessdata; sourceTree = "<group>"; };
 		98DB520EF2980BEB1959B784 /* Pods-OpenCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenCamera/Pods-OpenCamera.release.xcconfig"; sourceTree = "<group>"; };
 		AF3504367E8E9B53870215FF /* libPods-OpenCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A3BAF1D5B76672957171FC /* Pods-OpenCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenCamera/Pods-OpenCamera.debug.xcconfig"; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 				643BD5BF1EA4008E00C64F1A /* Assets.xcassets */,
 				643BD5C11EA4008E00C64F1A /* LaunchScreen.storyboard */,
 				643BD5C41EA4008E00C64F1A /* Info.plist */,
-				64DABF7B1EABF1A7006C79FC /* tessdata */,
+				64B654461EADA18800CADE5C /* tessdata */,
 				643BD5B31EA4008E00C64F1A /* Supporting Files */,
 			);
 			path = OpenCamera;
@@ -189,7 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				643BD5C31EA4008E00C64F1A /* LaunchScreen.storyboard in Resources */,
-				64DABF7C1EABF1A7006C79FC /* tessdata in Resources */,
+				64B654471EADA18800CADE5C /* tessdata in Resources */,
 				643BD5C01EA4008E00C64F1A /* Assets.xcassets in Resources */,
 				643BD5BE1EA4008E00C64F1A /* Main.storyboard in Resources */,
 			);
