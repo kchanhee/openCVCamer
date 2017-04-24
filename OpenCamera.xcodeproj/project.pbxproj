@@ -7,12 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5160A9F56ACC6672798B5416 /* libPods-OpenCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3504367E8E9B53870215FF /* libPods-OpenCamera.a */; };
 		643BD5B51EA4008E00C64F1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 643BD5B41EA4008E00C64F1A /* main.m */; };
 		643BD5B81EA4008E00C64F1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 643BD5B71EA4008E00C64F1A /* AppDelegate.m */; };
-		643BD5BB1EA4008E00C64F1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 643BD5BA1EA4008E00C64F1A /* ViewController.m */; };
+		643BD5BB1EA4008E00C64F1A /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 643BD5BA1EA4008E00C64F1A /* ViewController.mm */; };
 		643BD5BE1EA4008E00C64F1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 643BD5BC1EA4008E00C64F1A /* Main.storyboard */; };
 		643BD5C01EA4008E00C64F1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 643BD5BF1EA4008E00C64F1A /* Assets.xcassets */; };
 		643BD5C31EA4008E00C64F1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 643BD5C11EA4008E00C64F1A /* LaunchScreen.storyboard */; };
+		64CC10AF1EAB05F9003A6698 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CC10AB1EAB05F9003A6698 /* Accelerate.framework */; };
+		64CC10B01EAB05F9003A6698 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CC10AC1EAB05F9003A6698 /* AssetsLibrary.framework */; };
+		64CC10B11EAB05F9003A6698 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CC10AD1EAB05F9003A6698 /* AVFoundation.framework */; };
+		64CC10B21EAB05F9003A6698 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CC10AE1EAB05F9003A6698 /* CoreMedia.framework */; };
+		64DABF7A1EABF0E9006C79FC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 64DABF791EABF0E9006C79FC /* libz.tbd */; };
+		64DABF7C1EABF1A7006C79FC /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 64DABF7B1EABF1A7006C79FC /* tessdata */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +28,20 @@
 		643BD5B61EA4008E00C64F1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		643BD5B71EA4008E00C64F1A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		643BD5B91EA4008E00C64F1A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		643BD5BA1EA4008E00C64F1A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		643BD5BA1EA4008E00C64F1A /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		643BD5BD1EA4008E00C64F1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		643BD5BF1EA4008E00C64F1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		643BD5C21EA4008E00C64F1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		643BD5C41EA4008E00C64F1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64CC10AB1EAB05F9003A6698 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		64CC10AC1EAB05F9003A6698 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		64CC10AD1EAB05F9003A6698 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		64CC10AE1EAB05F9003A6698 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		64DABF791EABF0E9006C79FC /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		64DABF7B1EABF1A7006C79FC /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tessdata; path = ../../../../Downloads/tessdata; sourceTree = "<group>"; };
+		98DB520EF2980BEB1959B784 /* Pods-OpenCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenCamera/Pods-OpenCamera.release.xcconfig"; sourceTree = "<group>"; };
+		AF3504367E8E9B53870215FF /* libPods-OpenCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3A3BAF1D5B76672957171FC /* Pods-OpenCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenCamera/Pods-OpenCamera.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +49,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64DABF7A1EABF0E9006C79FC /* libz.tbd in Frameworks */,
+				64CC10AF1EAB05F9003A6698 /* Accelerate.framework in Frameworks */,
+				64CC10B01EAB05F9003A6698 /* AssetsLibrary.framework in Frameworks */,
+				64CC10B11EAB05F9003A6698 /* AVFoundation.framework in Frameworks */,
+				64CC10B21EAB05F9003A6698 /* CoreMedia.framework in Frameworks */,
+				5160A9F56ACC6672798B5416 /* libPods-OpenCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +66,8 @@
 			children = (
 				643BD5B21EA4008E00C64F1A /* OpenCamera */,
 				643BD5B11EA4008E00C64F1A /* Products */,
+				BCADDBB0D303B19987670887 /* Pods */,
+				91260235CE7731DD55D85797 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,11 +85,12 @@
 				643BD5B61EA4008E00C64F1A /* AppDelegate.h */,
 				643BD5B71EA4008E00C64F1A /* AppDelegate.m */,
 				643BD5B91EA4008E00C64F1A /* ViewController.h */,
-				643BD5BA1EA4008E00C64F1A /* ViewController.m */,
+				643BD5BA1EA4008E00C64F1A /* ViewController.mm */,
 				643BD5BC1EA4008E00C64F1A /* Main.storyboard */,
 				643BD5BF1EA4008E00C64F1A /* Assets.xcassets */,
 				643BD5C11EA4008E00C64F1A /* LaunchScreen.storyboard */,
 				643BD5C41EA4008E00C64F1A /* Info.plist */,
+				64DABF7B1EABF1A7006C79FC /* tessdata */,
 				643BD5B31EA4008E00C64F1A /* Supporting Files */,
 			);
 			path = OpenCamera;
@@ -79,6 +104,28 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		91260235CE7731DD55D85797 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				64DABF791EABF0E9006C79FC /* libz.tbd */,
+				64CC10AB1EAB05F9003A6698 /* Accelerate.framework */,
+				64CC10AC1EAB05F9003A6698 /* AssetsLibrary.framework */,
+				64CC10AD1EAB05F9003A6698 /* AVFoundation.framework */,
+				64CC10AE1EAB05F9003A6698 /* CoreMedia.framework */,
+				AF3504367E8E9B53870215FF /* libPods-OpenCamera.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BCADDBB0D303B19987670887 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C3A3BAF1D5B76672957171FC /* Pods-OpenCamera.debug.xcconfig */,
+				98DB520EF2980BEB1959B784 /* Pods-OpenCamera.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +133,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 643BD5C71EA4008E00C64F1A /* Build configuration list for PBXNativeTarget "OpenCamera" */;
 			buildPhases = (
+				01BB4C9852C0CDE7F7702D42 /* [CP] Check Pods Manifest.lock */,
 				643BD5AC1EA4008E00C64F1A /* Sources */,
 				643BD5AD1EA4008E00C64F1A /* Frameworks */,
 				643BD5AE1EA4008E00C64F1A /* Resources */,
+				99B99FDCD5A73E1E45CA1118 /* [CP] Embed Pods Frameworks */,
+				B4F27032844E64EBBD0200FE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -139,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				643BD5C31EA4008E00C64F1A /* LaunchScreen.storyboard in Resources */,
+				64DABF7C1EABF1A7006C79FC /* tessdata in Resources */,
 				643BD5C01EA4008E00C64F1A /* Assets.xcassets in Resources */,
 				643BD5BE1EA4008E00C64F1A /* Main.storyboard in Resources */,
 			);
@@ -146,12 +197,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01BB4C9852C0CDE7F7702D42 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		99B99FDCD5A73E1E45CA1118 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenCamera/Pods-OpenCamera-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4F27032844E64EBBD0200FE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenCamera/Pods-OpenCamera-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		643BD5AC1EA4008E00C64F1A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				643BD5BB1EA4008E00C64F1A /* ViewController.m in Sources */,
+				643BD5BB1EA4008E00C64F1A /* ViewController.mm in Sources */,
 				643BD5B81EA4008E00C64F1A /* AppDelegate.m in Sources */,
 				643BD5B51EA4008E00C64F1A /* main.m in Sources */,
 			);
@@ -273,11 +372,47 @@
 		};
 		643BD5C81EA4008E00C64F1A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3A3BAF1D5B76672957171FC /* Pods-OpenCamera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R7E3T65TJ4;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = OpenCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-weak_library",
+					"/usr/lib/libstdc++.6.0.9.dylib",
+					"-l\"TesseractOCRiOS\"",
+					"-l\"lept\"",
+					"-l\"stdc++\"",
+					"-l\"tesseract_all\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreVideo\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"opencv2\"",
+					"-lstdc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = funstuff.OpenCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -285,11 +420,47 @@
 		};
 		643BD5C91EA4008E00C64F1A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98DB520EF2980BEB1959B784 /* Pods-OpenCamera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R7E3T65TJ4;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = OpenCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-weak_library",
+					"/usr/lib/libstdc++.6.0.9.dylib",
+					"-l\"TesseractOCRiOS\"",
+					"-l\"lept\"",
+					"-l\"stdc++\"",
+					"-l\"tesseract_all\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreVideo\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"opencv2\"",
+					"-lstdc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = funstuff.OpenCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -314,6 +485,7 @@
 				643BD5C91EA4008E00C64F1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
