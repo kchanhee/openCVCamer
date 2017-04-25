@@ -14,6 +14,8 @@
 		643BD5BE1EA4008E00C64F1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 643BD5BC1EA4008E00C64F1A /* Main.storyboard */; };
 		643BD5C01EA4008E00C64F1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 643BD5BF1EA4008E00C64F1A /* Assets.xcassets */; };
 		643BD5C31EA4008E00C64F1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 643BD5C11EA4008E00C64F1A /* LaunchScreen.storyboard */; };
+		6448402B1EAF0A6D00E8C1AA /* CameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6448402A1EAF0A6D00E8C1AA /* CameraViewController.mm */; };
+		6448402E1EAF0D5600E8C1AA /* VideoCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 6448402D1EAF0D5600E8C1AA /* VideoCamera.m */; };
 		64B654471EADA18800CADE5C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 64B654461EADA18800CADE5C /* tessdata */; };
 		64CC10AF1EAB05F9003A6698 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CC10AB1EAB05F9003A6698 /* Accelerate.framework */; };
 		64CC10B01EAB05F9003A6698 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CC10AC1EAB05F9003A6698 /* AssetsLibrary.framework */; };
@@ -33,6 +35,10 @@
 		643BD5BF1EA4008E00C64F1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		643BD5C21EA4008E00C64F1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		643BD5C41EA4008E00C64F1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		644840291EAF0A6D00E8C1AA /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		6448402A1EAF0A6D00E8C1AA /* CameraViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraViewController.mm; sourceTree = "<group>"; };
+		6448402C1EAF0D5600E8C1AA /* VideoCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCamera.h; sourceTree = "<group>"; };
+		6448402D1EAF0D5600E8C1AA /* VideoCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCamera.m; sourceTree = "<group>"; };
 		64B654461EADA18800CADE5C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = SOURCE_ROOT; };
 		64CC10AB1EAB05F9003A6698 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		64CC10AC1EAB05F9003A6698 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -82,6 +88,10 @@
 		643BD5B21EA4008E00C64F1A /* OpenCamera */ = {
 			isa = PBXGroup;
 			children = (
+				644840291EAF0A6D00E8C1AA /* CameraViewController.h */,
+				6448402C1EAF0D5600E8C1AA /* VideoCamera.h */,
+				6448402D1EAF0D5600E8C1AA /* VideoCamera.m */,
+				6448402A1EAF0A6D00E8C1AA /* CameraViewController.mm */,
 				643BD5B61EA4008E00C64F1A /* AppDelegate.h */,
 				643BD5B71EA4008E00C64F1A /* AppDelegate.m */,
 				643BD5B91EA4008E00C64F1A /* ViewController.h */,
@@ -251,8 +261,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				643BD5BB1EA4008E00C64F1A /* ViewController.mm in Sources */,
+				6448402B1EAF0A6D00E8C1AA /* CameraViewController.mm in Sources */,
 				643BD5B81EA4008E00C64F1A /* AppDelegate.m in Sources */,
 				643BD5B51EA4008E00C64F1A /* main.m in Sources */,
+				6448402E1EAF0D5600E8C1AA /* VideoCamera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
