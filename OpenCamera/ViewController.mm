@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import <opencv2/opencv.hpp>
-
+#import "UIImage+operation.h"
 //#import "ImageUtils.h"
 //#import "GeometryUtil.h"
 //#import "MSERManager.h"
@@ -34,7 +34,8 @@
 @property (assign) int count;
 @property (assign) BOOL started;
 @property (assign) CGRect textRect;
-
+@property (strong) NSMutableArray *bounding;
+@property (assign) int boundcount;
 @end
 
 @implementation ViewController
@@ -44,7 +45,9 @@
     //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hello World" message:@"welcome to opencv" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
     //    [alert show];
     // Do any additional setup after loading the view, typically from a nib.
-    self.image = [UIImage imageNamed:@"skyknight_bw"];
+//    self.image = [UIImage imageNamed:@"skyknight"];
+    self.image = [UIImage imageNamed:@"pen_spider2"];
+
     self.recogLabel = [[UILabel alloc] init];
     self.recogLabel.textColor = [UIColor whiteColor];
     self.recogLabel.shadowColor = [UIColor whiteColor];
@@ -74,38 +77,44 @@
     self.ts.charWhitelist = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     self.ts.image = self.image;
     self.ts.maximumRecognitionTime = 2.0;
+    self.bounding = [[NSMutableArray alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [self.contain setBounds:CGRectMake(0, 0, 375, 667)];
     [self.button setBounds:CGRectMake(0, 0, 100, 45)];
-    [self.button setFrame:CGRectMake(30, 200, 100, 45)];
+    [self.button setFrame:CGRectMake(30, 50, 100, 45)];
     [self.recogLabel setBounds:CGRectMake(0, 0, 100, 45)];
     [self.recogLabel setFrame:CGRectMake(150, 200, 100, 45)];
     self.contain.contentMode = UIViewContentModeCenter;
-    self.contain.contentMode = UIViewContentModeScaleAspectFill;
+    self.contain.contentMode = UIViewContentModeScaleAspectFit;
     self.textRect = CGRectMake(85, 84, 550, 58);
     self.subImage.image = [self imageByCropping:self.image toRect:self.textRect];
-    [self.subImage setBounds:CGRectMake(0, 0, 400, self.textRect.size.height)];
+    [self.subImage setBounds:CGRectMake(0, 0, 400, 300)];
     self.subImage.contentMode = UIViewContentModeCenter;
     self.subImage.contentMode = UIViewContentModeScaleAspectFit;
     [self.textBound setFrame:CGRectMake(0, 30, 534, 58)];
     [self.view addSubview:self.contain];
     
     self.contain.center = self.view.center;
-    self.subImage.center = self.view.center;
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
+    [self.subImage setFrame:CGRectMake((screenWidth - 400) / 2, screenHeight - 300 , 400, 300)];
     self.subImage.layer.borderColor = [UIColor greenColor].CGColor;
     self.subImage.layer.borderWidth = 1.0;
     [self.view addSubview:self.subImage];
     [self.view addSubview:self.button];
     [self.view addSubview:self.recogLabel];
-    [self.view addSubview:self.textBound];
+//    [self.view addSubview:self.textBound];
     [self.view bringSubviewToFront:self.button];
     
     self.ts.rect = self.textRect;
     [self.ts recognize];
     self.recogLabel.text = [self.ts recognizedText];
-
+    self.boundcount = 0;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -126,12 +135,15 @@
 }
 
 -(void)doTap:(UIButton *)sender {
-    
+//    self.recogLabel.hidden = YES;
+//    self.textBound.hidden = YES;
+//    self.subImage.hidden = YES;
+
     cv::Mat sdfs = [self cvMatFromUIImage:self.image];
-    cv::Mat greyMat;
-    cv::cvtColor(sdfs, greyMat, CV_RGBA2GRAY);
-    cv::Mat outImg;
-    cv::threshold(greyMat, outImg, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
+//    cv::Mat greyMat;
+//    cv::cvtColor(sdfs, greyMat, CV_RGBA2GRAY);
+//    cv::Mat outImg;
+//    cv::threshold(greyMat, outImg, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
     
     //    if (self.gray) {
     //
@@ -155,32 +167,133 @@
 //        self.count = 0;
 //    }
     
-    switch (self.count) {
-        case 0: {
-            processedImg = [self otsuThreshold:greyMat];
-            self.count++;
-            break;
-        }
-        case 1: {
-            processedImg = [self UIImageFromCVMat:greyMat];
-            self.count++;
-            break;
-        }
-        default: {
-            processedImg = [self imageErode:outImg];
+//    switch (self.count) {
+//        case 0: {
+//            processedImg = [self otsuThreshold:greyMat];
+//            self.count++;
+//            break;
+//        }
+//        case 1: {
+//            processedImg = [self UIImageFromCVMat:greyMat];
+//            self.count++;
+//            break;
+//        }
+//        default: {
+//            processedImg = [[self detectText:sdfs] firstObject];
+//            self.count = 0;
+//            break;
+//        }
+//            
+//    }
+    
+    if (self.count == 0) {
+        NSArray *arr = [[NSArray alloc] initWithArray:[self detectText:sdfs]];
+        processedImg = [arr firstObject];
+        self.bounding = [arr lastObject];
+        self.count++;
+    } else {
+        NSLog(@"Current image: %d", self.boundcount);
+        if (self.boundcount == self.bounding.count - 1) {
+            self.subImage.image = self.bounding[self.boundcount];
+            self.boundcount = 0;
             self.count = 0;
-            break;
+        } else {
+            self.subImage.image = self.bounding[self.boundcount];
+            self.boundcount++;
+            self.ts.image = self.subImage.image;
+            [self.ts recognize];
+            self.recogLabel.text = [self.ts recognizedText];
+            [self.recogLabel sizeToFit];
         }
-            
+        return;
     }
-    self.ts.image = processedImg;
-    self.ts.rect = self.textRect;
-    [self.ts recognize];
-    self.recogLabel.text = [self.ts recognizedText];
-    [self.recogLabel sizeToFit];
-    self.subImage.image = [self imageByCropping:processedImg toRect:self.textRect];
+    
+//    self.ts.image = processedImg;
+//    self.ts.rect = self.textRect;
+//    [self.ts recognize];
+//
+//    [self.recogLabel sizeToFit];
+//    self.subImage.image = [self imageByCropping:processedImg toRect:self.textRect];
+    
     self.contain.image = processedImg;
     //    [self.contain setImage:[self UIImageFromCVMat:[self cvMatGrayFromUIImage:self.image]]];
+}
+
+
+-(NSArray *)detectText:(cv::Mat)cvMat {
+    Mat rgb = cvMat;
+    // Downsample and use for processing
+//    pyrDown(cvMat, rgb);
+//    pyrDown(rgb, rgb);
+    Mat small;
+    cvtColor(rgb, small, CV_BGR2GRAY);
+//    Mat small = cvMat;
+    // Morphological Gradient
+    Mat grad;
+    Mat morphKernel = getStructuringElement(MORPH_ELLIPSE, cv::Size(2.5, 2.5));
+    morphologyEx(small, grad, MORPH_GRADIENT, morphKernel);
+    // TODO: UNCOMMENT THIS
+    // binarize
+    Mat bw;
+    threshold(grad, bw, 0.0, 255.0, THRESH_BINARY | THRESH_OTSU);
+    // connect horizontally oriented regions
+    // TODO: Replace grad with bw
+    Mat connected;
+    morphKernel = getStructuringElement(MORPH_RECT, cv::Size(9, 1));
+    morphologyEx(bw, connected, MORPH_CLOSE, morphKernel);
+    // find contours
+    Mat mask = Mat::zeros(bw.size(), CV_8UC1);
+    std::vector<std::vector<cv::Point>> contours;
+    std::vector<Vec4i> hierarchy;
+    findContours(connected, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+    NSMutableArray *boundingRects = [[NSMutableArray alloc] init];
+    // filter contours
+    for(int idx = 0; idx >= 0; idx = hierarchy[idx][0]){
+        cv::Rect rect = boundingRect(contours[idx]);
+        Mat maskROI(mask, rect);
+        maskROI = Scalar(0, 0, 0);
+        // fill the contour
+        drawContours(mask, contours, idx, Scalar(255, 255, 255), CV_FILLED);
+        
+        RotatedRect rrect = minAreaRect(contours[idx]);
+        double r = (double)countNonZero(maskROI) / (rrect.size.width * rrect.size.height);
+        
+        Scalar color;
+        int thickness = 1;
+        // assume at least 25% of the area is filled if it contains text
+        if (r > 0.25 &&
+            (rrect.size.height > 8 && rrect.size.width > 8) // constraints on region size
+            // these two conditions alone are not very robust. better to use something
+            // like the number of significant peaks in a horizontal projection as a third condition
+            ){
+            thickness = 2;
+            color = Scalar(0, 255, 0);
+        }
+        else
+        {
+            thickness = 1;
+            color = Scalar(0, 0, 255);
+        }
+        
+        Point2f pts[4];
+        rrect.points(pts);
+        if (thickness == 2) {
+            Mat M,rot,crop;
+            M = getRotationMatrix2D(rrect.center, rrect.angle, 1);
+            warpAffine(bw, rot, M, rgb.size(), INTER_CUBIC);
+            getRectSubPix(rot, rrect.size, rrect.center, crop);
+            [boundingRects addObject:[self UIImageFromCVMat:crop]];
+//            [boundingRects addObject:M];;
+        }
+        
+        for (int i = 0; i < 4; i++)
+        {
+            line(rgb, cv::Point((int)pts[i].x, (int)pts[i].y), cv::Point((int)pts[(i+1)%4].x, (int)pts[(i+1)%4].y), color, thickness);
+            
+            
+        }
+    }
+    return @[[self UIImageFromCVMat:rgb], boundingRects];
 }
 
 - (UIImage *)imageByCropping:(UIImage *)imageToCrop toRect:(CGRect)rect {
@@ -188,8 +301,6 @@
     UIImage *cropped = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
     return cropped;
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

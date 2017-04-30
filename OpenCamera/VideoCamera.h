@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <opencv2/videoio/cap_ios.h>
+#include <opencv2/videoio/cap_ios.h>
 
 @interface VideoCamera : CvVideoCamera
 @property BOOL letterboxPreview;
