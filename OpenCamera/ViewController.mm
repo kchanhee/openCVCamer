@@ -46,7 +46,7 @@
     //    [alert show];
     // Do any additional setup after loading the view, typically from a nib.
 //    self.image = [UIImage imageNamed:@"skyknight"];
-    self.image = [UIImage imageNamed:@"pen_spider2"];
+    self.image = [UIImage imageNamed:@"pen_spider_white_bg"];
 
     self.recogLabel = [[UILabel alloc] init];
     self.recogLabel.textColor = [UIColor whiteColor];
@@ -85,7 +85,7 @@
     [self.button setBounds:CGRectMake(0, 0, 100, 45)];
     [self.button setFrame:CGRectMake(30, 50, 100, 45)];
     [self.recogLabel setBounds:CGRectMake(0, 0, 100, 45)];
-    [self.recogLabel setFrame:CGRectMake(150, 200, 100, 45)];
+    [self.recogLabel setFrame:CGRectMake(150, 50, 100, 45)];
     self.contain.contentMode = UIViewContentModeCenter;
     self.contain.contentMode = UIViewContentModeScaleAspectFit;
     self.textRect = CGRectMake(85, 84, 550, 58);
@@ -103,7 +103,7 @@
     CGFloat screenHeight = screenRect.size.height;
     
     [self.subImage setFrame:CGRectMake((screenWidth - 400) / 2, screenHeight - 300 , 400, 300)];
-    self.subImage.layer.borderColor = [UIColor greenColor].CGColor;
+    self.subImage.layer.borderColor = [UIColor blueColor].CGColor;
     self.subImage.layer.borderWidth = 1.0;
     [self.view addSubview:self.subImage];
     [self.view addSubview:self.button];
@@ -140,8 +140,8 @@
 //    self.subImage.hidden = YES;
 
     cv::Mat sdfs = [self cvMatFromUIImage:self.image];
-//    cv::Mat greyMat;
-//    cv::cvtColor(sdfs, greyMat, CV_RGBA2GRAY);
+    cv::Mat greyMat;
+    cv::cvtColor(sdfs, greyMat, CV_BGRA2GRAY);
 //    cv::Mat outImg;
 //    cv::threshold(greyMat, outImg, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
     
@@ -205,6 +205,13 @@
             self.recogLabel.text = [self.ts recognizedText];
             [self.recogLabel sizeToFit];
         }
+//        Mat threshImg = [self doAdaptThreshold:greyMat];
+//        
+//        
+//        
+//        processedImg = [self UIImageFromCVMat:threshImg];
+//        self.count = 0;
+
         return;
     }
     
@@ -219,6 +226,27 @@
     //    [self.contain setImage:[self UIImageFromCVMat:[self cvMatGrayFromUIImage:self.image]]];
 }
 
+-(std::vector< std::vector<cv::Point> >)findContours:(Mat)thresholdImg minPts:(int)minContourPointsAllowed {
+    std::vector< std::vector<cv::Point> > allContours;
+    std::vector< std::vector<cv::Point> > contours;
+    findContours(thresholdImg, allContours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE);
+    contours.clear();
+    for (size_t i=0; i < allContours.size(); i++) {
+        unsigned long contourSize = allContours[i].size();
+        NSLog(@"contour size: %ld", contourSize);
+        if (contourSize > minContourPointsAllowed) {
+            contours.push_back(allContours[i]);
+        }
+    }
+    return contours;
+    
+}
+
+-(Mat)doAdaptThreshold:(Mat) grayscale {
+    Mat thresholdImg;
+    adaptiveThreshold(grayscale, thresholdImg, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 7, 7);
+    return thresholdImg;
+}
 
 -(NSArray *)detectText:(cv::Mat)cvMat {
     Mat rgb = cvMat;
@@ -226,7 +254,7 @@
 //    pyrDown(cvMat, rgb);
 //    pyrDown(rgb, rgb);
     Mat small;
-    cvtColor(rgb, small, CV_BGR2GRAY);
+    cvtColor(rgb, small, CV_BGRA2GRAY);
 //    Mat small = cvMat;
     // Morphological Gradient
     Mat grad;
@@ -234,8 +262,9 @@
     morphologyEx(small, grad, MORPH_GRADIENT, morphKernel);
     // TODO: UNCOMMENT THIS
     // binarize
-    Mat bw;
-    threshold(grad, bw, 0.0, 255.0, THRESH_BINARY | THRESH_OTSU);
+    Mat bw = [self doAdaptThreshold:small];
+//    threshold(grad, bw, 0.0, 255.0, THRESH_BINARY | THRESH_OTSU);
+    
     // connect horizontally oriented regions
     // TODO: Replace grad with bw
     Mat connected;
@@ -243,12 +272,13 @@
     morphologyEx(bw, connected, MORPH_CLOSE, morphKernel);
     // find contours
     Mat mask = Mat::zeros(bw.size(), CV_8UC1);
-    std::vector<std::vector<cv::Point>> contours;
-    std::vector<Vec4i> hierarchy;
-    findContours(connected, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+    std::vector<std::vector<cv::Point>> contours = [self findContours:bw minPts:200];
+//    std::vector<Vec4i> hierarchy;
+//    findContours(connected, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
     NSMutableArray *boundingRects = [[NSMutableArray alloc] init];
     // filter contours
-    for(int idx = 0; idx >= 0; idx = hierarchy[idx][0]){
+//    for(int idx = 0; idx >= 0; idx = hierarchy[idx][0]){
+    for (int idx = 0; idx < contours.size(); idx++) {
         cv::Rect rect = boundingRect(contours[idx]);
         Mat maskROI(mask, rect);
         maskROI = Scalar(0, 0, 0);
@@ -279,21 +309,27 @@
         rrect.points(pts);
         if (thickness == 2) {
             Mat M,rot,crop;
-            M = getRotationMatrix2D(rrect.center, rrect.angle, 1);
+            float angle = rrect.angle;
+            cv::Size rrect_size = rrect.size;
+            if (rrect.angle < -45) {
+                angle += 90.0;
+                swap(rrect_size.width, rrect_size.height);
+            }
+            M = getRotationMatrix2D(rrect.center, angle, 1);
             warpAffine(bw, rot, M, rgb.size(), INTER_CUBIC);
-            getRectSubPix(rot, rrect.size, rrect.center, crop);
+            getRectSubPix(rot, rrect_size, rrect.center, crop);
             [boundingRects addObject:[self UIImageFromCVMat:crop]];
 //            [boundingRects addObject:M];;
         }
         
         for (int i = 0; i < 4; i++)
         {
-            line(rgb, cv::Point((int)pts[i].x, (int)pts[i].y), cv::Point((int)pts[(i+1)%4].x, (int)pts[(i+1)%4].y), color, thickness);
+            line(bw, cv::Point((int)pts[i].x, (int)pts[i].y), cv::Point((int)pts[(i+1)%4].x, (int)pts[(i+1)%4].y), color, thickness);
             
             
         }
     }
-    return @[[self UIImageFromCVMat:rgb], boundingRects];
+    return @[[self UIImageFromCVMat:bw], boundingRects];
 }
 
 - (UIImage *)imageByCropping:(UIImage *)imageToCrop toRect:(CGRect)rect {
